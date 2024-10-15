@@ -8,7 +8,6 @@ from entity.reservations import reservations
 from exception.AssetNotFoundException import AssetNotFoundException
 from exception.AssetNotMaintainedException import AssetNotMaintainedException
 from exception.AssetManagementException import AssetManagementException
-import datetime
 
 class AssetManagementServiceImpl(AssetManagementService):
     def __init__(self):
@@ -30,7 +29,7 @@ class AssetManagementServiceImpl(AssetManagementService):
             raise AssetManagementException(f"Error adding asset: {e}")
             return False
 
-    def updateAsset(self, asset: assets) -> bool:
+    def updateAsset(self, asset: assets):
         try:
             cursor = self.connection.cursor()
             query = '''UPDATE assets SET name=?, type=?, serial_number=?, purchase_date=?, 

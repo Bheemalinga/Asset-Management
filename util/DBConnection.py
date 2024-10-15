@@ -1,5 +1,6 @@
 import pyodbc
 from util.PropertyUtil import PropertyUtil
+from exception.AssetManagementException import AssetManagementException
 
 class DBConnection:
     connection = None
@@ -12,5 +13,5 @@ class DBConnection:
                 DBConnection.connection = pyodbc.connect(Credentials)
                 print("\n\tPython and DB handshake Successful.")
             except Exception as e:
-                print("Python - DB handshake failure : ",e)
+                raise AssetManagementException(f"Python - DB handshake failure : {e}")
         return DBConnection.connection
