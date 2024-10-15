@@ -10,11 +10,13 @@ from exception.AssetNotMaintainedException import AssetNotMaintainedException
 from exception.AssetManagementException import AssetManagementException
 import datetime
 
-class AssetManagementServiceImpl(AssetManagementService, ABC):
+class AssetManagementServiceImpl(AssetManagementService):
     def __init__(self):
         self.connection = DBConnection.getConnection()
+        if self.connection is None:
+            raise AssetManagementException("Failed to connect to database.")
 
-    def addAsset(self, asset: assets) -> bool:
+    def addAsset(self, asset: assets):
         try:
             cursor = self.connection.cursor()
             query = '''INSERT INTO assets (asset_id, name, type, serial_number, purchase_date, location, status, owner_id) 
@@ -26,6 +28,7 @@ class AssetManagementServiceImpl(AssetManagementService, ABC):
             return True
         except Exception as e:
             raise AssetManagementException(f"Error adding asset: {e}")
+            return False
 
     def updateAsset(self, asset: assets) -> bool:
         try:
@@ -40,7 +43,7 @@ class AssetManagementServiceImpl(AssetManagementService, ABC):
         except Exception as e:
             raise AssetManagementException(f"Error updating asset: {e}")
 
-    def deleteAsset(self, assetId: int) -> bool:
+    def deleteAsset(self, assetId: int):
         try:
             cursor = self.connection.cursor()
             query = '''DELETE FROM assets WHERE asset_id=?'''
@@ -50,7 +53,7 @@ class AssetManagementServiceImpl(AssetManagementService, ABC):
         except Exception as e:
             raise AssetManagementException(f"Error deleting asset: {e}")
 
-    def allocateAsset(self, assetId: int, employeeId: int, allocationDate: str) -> bool:
+    def allocateAsset(self, assetId: int, employeeId: int, allocationDate: str):
         try:
             cursor = self.connection.cursor()
             query = '''INSERT INTO assetAllocation (allocation_id, asset_id, employee_id, allocation_date) 
@@ -62,7 +65,7 @@ class AssetManagementServiceImpl(AssetManagementService, ABC):
         except Exception as e:
             raise AssetManagementException(f"Error allocating asset: {e}")
 
-    def deallocateAsset(self, assetId: int, employeeId: int, returnDate: str) -> bool:
+    def deallocateAsset(self, assetId: int, employeeId: int, returnDate: str):
         try:
             cursor = self.connection.cursor()
             query = '''UPDATE assetAllocation SET return_date=? WHERE asset_id=? AND employee_id=? AND return_date IS NULL'''
@@ -72,7 +75,7 @@ class AssetManagementServiceImpl(AssetManagementService, ABC):
         except Exception as e:
             raise AssetManagementException(f"Error deallocating asset: {e}")
 
-    def performMaintenance(self, assetId: int, maintenanceDate: str, description: str, cost: float) -> bool:
+    def performMaintenance(self, assetId: int, maintenanceDate: str, description: str, cost: float):
         try:
             cursor = self.connection.cursor()
             # Check if the asset has been maintained for more than 2 years
@@ -96,7 +99,7 @@ class AssetManagementServiceImpl(AssetManagementService, ABC):
         except Exception as e:
             raise AssetManagementException(f"Failed to perform maintenance: {e}")
 
-    def reserveAsset(self, assetId: int, employeeId: int, reservationDate: str, startDate: str, endDate: str) -> bool:
+    def reserveAsset(self, assetId: int, employeeId: int, reservationDate: str, startDate: str, endDate: str):
         try:
             cursor = self.connection.cursor()
             query = '''INSERT INTO reservations (reservation_id, asset_id, employee_id, reservation_date, start_date, end_date, status) 
@@ -108,7 +111,7 @@ class AssetManagementServiceImpl(AssetManagementService, ABC):
         except Exception as e:
             raise AssetManagementException(f"Error reserving asset: {e}")
 
-    def withdrawReservation(self, reservationId: int) -> bool:
+    def withdrawReservation(self, reservationId: int):
         try:
             cursor = self.connection.cursor()
             query = '''DELETE FROM reservations WHERE reservation_id=?'''

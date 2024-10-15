@@ -8,7 +8,7 @@ from entity.reservations import reservations
 class AssetManagementService(ABC):
     
     @abstractmethod
-    def addAsset(self, asset: assets) -> bool:
+    def addAsset(self, asset: assets):
         """
         Adds a new asset to the system.
         :param asset: An instance of the 'assets' class.
@@ -17,7 +17,7 @@ class AssetManagementService(ABC):
         pass
     
     @abstractmethod
-    def updateAsset(self, asset: assets) -> bool:
+    def updateAsset(self, asset: assets):
         """
         Updates information about an existing asset.
         :param asset: An instance of the 'assets' class.
@@ -26,7 +26,7 @@ class AssetManagementService(ABC):
         pass
     
     @abstractmethod
-    def deleteAsset(self, assetId: int) -> bool:
+    def deleteAsset(self, assetId: int):
         """
         Deletes an asset from the system based on its ID.
         :param assetId: ID of the asset to be deleted.
@@ -35,7 +35,7 @@ class AssetManagementService(ABC):
         pass
     
     @abstractmethod
-    def allocateAsset(self, assetId: int, employeeId: int, allocationDate: str) -> bool:
+    def allocateAsset(self, assetId: int, employeeId: int, allocationDate: str):
         """
         Allocates an asset to an employee on a specified allocation date.
         :param assetId: ID of the asset to allocate.
@@ -46,7 +46,7 @@ class AssetManagementService(ABC):
         pass
     
     @abstractmethod
-    def deallocateAsset(self, assetId: int, employeeId: int, returnDate: str) -> bool:
+    def deallocateAsset(self, assetId: int, employeeId: int, returnDate: str):
         """
         Deallocates an asset from an employee on a specified return date.
         :param assetId: ID of the asset to deallocate.
@@ -57,7 +57,7 @@ class AssetManagementService(ABC):
         pass
     
     @abstractmethod
-    def performMaintenance(self, assetId: int, maintenanceDate: str, description: str, cost: float) -> bool:
+    def performMaintenance(self, assetId: int, maintenanceDate: str, description: str, cost: float):
         """
         Records maintenance activity for an asset, including the date, description, and cost.
         :param assetId: ID of the asset to maintain.
@@ -69,7 +69,7 @@ class AssetManagementService(ABC):
         pass
     
     @abstractmethod
-    def reserveAsset(self, assetId: int, employeeId: int, reservationDate: str, startDate: str, endDate: str) -> bool:
+    def reserveAsset(self, assetId: int, employeeId: int, reservationDate: str, startDate: str, endDate: str):
         """
         Reserves an asset for a specified employee for a specific period.
         :param assetId: ID of the asset to reserve.
@@ -82,7 +82,7 @@ class AssetManagementService(ABC):
         pass
     
     @abstractmethod
-    def withdrawReservation(self, reservationId: int) -> bool:
+    def withdrawReservation(self, reservationId: int):
         """
         Withdraws a reservation for an asset identified by the reservation ID.
         :param reservationId: ID of the reservation to withdraw.
