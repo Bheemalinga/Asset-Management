@@ -1,5 +1,5 @@
 import pyodbc
-from util.Property import PropertyUtil
+from util.PropertyUtil import PropertyUtil
 
 class DBConnection:
     connection = None

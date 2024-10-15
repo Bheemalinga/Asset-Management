@@ -5,8 +5,8 @@ from entity.assets import assets
 from entity.assetAllocation import assetAllocation
 from entity.maintenanceRecords import maintenanceRecords
 from entity.reservations import reservations
-from myexceptions.AssetNotFoundException import AssetNotFoundException
-from myexceptions.AssetNotMaintainException import AssetNotMaintainException
+from exception.AssetNotFoundException import AssetNotFoundException
+from exception.AssetNotMaintainedException import AssetNotMaintainedException
 from exception.AssetManagementException import AssetManagementException
 import datetime
 

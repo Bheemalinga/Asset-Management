@@ -91,6 +91,7 @@ create table reservations(
     foreign key (employee_id) references employees(employee_id),
     foreign key (asset_id) references assets(asset_id)
 );
+
 insert into employees (employee_id, name, department, email, password)
 values (
         'E001',
@@ -187,7 +188,7 @@ values (
         'in use',
         'E005'
     );
-insert into maintenance_records (
+insert into maintenanceRecords (
         maintenance_id,
         asset_id,
         maintenance_date,
@@ -223,7 +224,7 @@ values (
         'Oil change',
         100.00
     );
-insert into asset_allocations (
+insert into assetAllocation (
         allocation_id,
         asset_id,
         employee_id,
@@ -289,13 +290,14 @@ values (
         '2028-07-10',
         'pending'
     );
+
 select *
 from employees;
 select *
 from assets;
 select *
-from maintenance_records;
+from maintenanceRecords;
 select *
-from asset_allocations;
+from assetAllocation;
 select *
 from reservations;
