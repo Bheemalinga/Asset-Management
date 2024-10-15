@@ -1,5 +1,5 @@
 class PropertyUtil:
-    @staticmethod # because 
+    @staticmethod
     def getPropertyString():
         return (
             'Driver = {SQL Server};'
