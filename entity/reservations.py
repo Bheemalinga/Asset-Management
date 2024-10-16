@@ -1,16 +1,3 @@
-'''
-create table reservations(
-    reservation_id varchar(10) primary key not null,
-    asset_id varchar(10),
-    employee_id varchar(10),
-    reservation_date date,
-    start_date date,
-    end_date date,
-    status varchar(15),
-    foreign key (employee_id) references employees(employee_id),
-    foreign key (asset_id) references assets(asset_id)
-);
-'''
 class reservations:
     def __init__(self, reservation_id = None, asset_id = None, employee_id = None, reservation_date = None, start_date = None, end_date = None, status = None):
         # Private attributes

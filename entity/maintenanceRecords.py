@@ -1,13 +1,3 @@
-"""
-create table maintenanceRecords(
-    maintenance_id varchar(10) primary key not null,
-    asset_id varchar(10),
-    maintenance_date date,
-    description varchar(150),
-    cost decimal(6, 2),
-    foreign key (asset_id) references assets(asset_id)
-);
-"""
 class maintenanceRecords:
     def __init__(self, maintenance_id = None, asset_id = None, maintenance_date = None, description = None, cost = None):
         # Private attributes

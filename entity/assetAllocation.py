@@ -1,15 +1,3 @@
-'''
-create table assetAllocation(
-    allocation_id varchar(10) primary key not null,
-    asset_id varchar(10),
-    employee_id varchar(10),
-    allocation_date date,
-    return_date date,
-    foreign key (asset_id) references assets(asset_id),
-    foreign key (employee_id) references employees(employee_id)
-);
-'''
-
 class assetAllocation:
     def __init__(self, allocation_id = None,asset_id = None,employee_id = None,allocation_date = None,return_date = None):
         # Private attributes
