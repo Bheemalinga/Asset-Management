@@ -45,12 +45,29 @@ class AssetManagementServiceImpl(AssetManagementService):
     def deleteAsset(self, assetId: int):
         try:
             cursor = self.connection.cursor()
+
+            # deleting related reservations
+            delete_reservation_query = '''DELETE FROM reservations WHERE asset_id=?'''
+            cursor.execute(delete_reservation_query, (assetId,))
+        
+            # deleting related asset allocations
+            delete_allocation_query = '''DELETE FROM assetAllocation WHERE asset_id=?'''
+            cursor.execute(delete_allocation_query, (assetId,))  # Pass assetId as a tuple
+
+            # deleting related maintenance records
+            delete_maintenance_query = '''DELETE FROM maintenanceRecords WHERE asset_id=?'''
+            cursor.execute(delete_maintenance_query, (assetId,))  # Pass assetId as a tuple
+
+            # Now, delete the asset
             query = '''DELETE FROM assets WHERE asset_id=?'''
-            cursor.execute(query, assetId)
+            cursor.execute(query, (assetId,))  # Pass assetId as a tuple
+        
             self.connection.commit()
             return True
         except Exception as e:
             raise AssetManagementException(f"Error deleting asset: {e}")
+
+
 
     def allocateAsset(self, assetId: int, employeeId: int, allocationDate: str):
         try:
