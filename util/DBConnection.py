@@ -7,6 +7,7 @@ class DBConnection:
 
     @staticmethod
     def getConnection():
+        print(pyodbc.drivers())
         if DBConnection.connection is None:
             try:
                 Credentials = PropertyUtil.getPropertyString()

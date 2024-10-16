@@ -4,7 +4,7 @@ from exception.AssetNotMaintainedException import AssetNotMaintainedException
 from exception.AssetManagementException import AssetManagementException
 from entity.assets import assets
 
-class asset_Management:
+class AssetManagement:
     def __init__(self):
         self.database_handshake = AssetManagementServiceImpl()
 
@@ -98,7 +98,7 @@ class asset_Management:
 
             except AssetNotFoundException as e:
                 print(f"Asset not found: {e}")
-            except AssetNotMaintainException as e:
+            except AssetNotMaintainedException as e:
                 print(f"Maintenance issue: {e}")
             except AssetManagementException as e:
                 print(f"General Asset Management Error: {e}")
@@ -106,7 +106,7 @@ class asset_Management:
                 print(f"Unexpected error: {e}")
 
 def main():
-    asset_manager = asset_Management()
+    asset_manager = AssetManagement()
     asset_manager.display_menu()
 
 
